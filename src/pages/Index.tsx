@@ -1,7 +1,9 @@
 import { ProductCard } from "@/components/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Archive, Shield, Sword } from "lucide-react";
+import { Archive, Shield, Sword, Plus } from "lucide-react";
 import { Product } from "@/types/product";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 // Temporary mock data - would come from backend in real app
 export const mockProducts: Product[] = [
@@ -26,10 +28,21 @@ export const mockProducts: Product[] = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-primary mb-2">STALKER MARKET</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-4xl font-bold text-primary mb-2">STALKER MARKET</h1>
+          <Button 
+            onClick={() => navigate('/admin')} 
+            className="flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            Add Product
+          </Button>
+        </div>
         <div className="h-2 hazard-stripes"></div>
       </div>
       
