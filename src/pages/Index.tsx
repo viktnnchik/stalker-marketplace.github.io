@@ -1,16 +1,18 @@
 import { ProductCard } from "@/components/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Archive, Backpack, Compass } from "lucide-react";
+import { Archive, Shield, Sword } from "lucide-react";
+import { Product } from "@/types/product";
 
 // Temporary mock data - would come from backend in real app
-const mockProducts = [
+export const mockProducts: Product[] = [
   {
     id: "1",
     name: "SEVA Suit",
     description: "Advanced protective suit providing excellent protection against radiation and anomalies.",
     price: 75000,
     image: "/placeholder.svg",
-    category: "equipment" as const
+    category: "armor",
+    discordUsername: "stalker123"
   },
   {
     id: "2",
@@ -18,7 +20,8 @@ const mockProducts = [
     description: "Rare artifact with powerful healing properties.",
     price: 45000,
     image: "/placeholder.svg",
-    category: "artifacts" as const
+    category: "artifacts",
+    discordUsername: "zone_trader"
   }
 ];
 
@@ -33,15 +36,15 @@ const Index = () => {
       <Tabs defaultValue="all" className="mb-8">
         <TabsList className="grid w-full grid-cols-3 max-w-[400px] mx-auto">
           <TabsTrigger value="all" className="flex items-center gap-2">
-            <Compass className="w-4 h-4" />
+            <Archive className="w-4 h-4" />
             All
           </TabsTrigger>
-          <TabsTrigger value="equipment" className="flex items-center gap-2">
-            <Backpack className="w-4 h-4" />
-            Equipment
+          <TabsTrigger value="armor" className="flex items-center gap-2">
+            <Shield className="w-4 h-4" />
+            Armor
           </TabsTrigger>
           <TabsTrigger value="artifacts" className="flex items-center gap-2">
-            <Archive className="w-4 h-4" />
+            <Sword className="w-4 h-4" />
             Artifacts
           </TabsTrigger>
         </TabsList>
@@ -54,10 +57,10 @@ const Index = () => {
           </div>
         </TabsContent>
 
-        <TabsContent value="equipment">
+        <TabsContent value="armor">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {mockProducts
-              .filter((product) => product.category === "equipment")
+              .filter((product) => product.category === "armor")
               .map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
