@@ -1,19 +1,23 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "@/types/product";
 import { useNavigate } from "react-router-dom";
-import { Backpack, Bomb, Compass } from "lucide-react";
+import { Shield, Sword, Star, Wrench } from "lucide-react";
 
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
   
   const getIcon = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'equipment':
-        return <Backpack className="w-6 h-6" />;
+    switch (category) {
+      case 'armor':
+        return <Shield className="w-6 h-6" />;
+      case 'weapons':
+        return <Sword className="w-6 h-6" />;
       case 'artifacts':
-        return <Bomb className="w-6 h-6" />;
+        return <Star className="w-6 h-6" />;
+      case 'sharpening':
+        return <Wrench className="w-6 h-6" />;
       default:
-        return <Compass className="w-6 h-6" />;
+        return <Sword className="w-6 h-6" />;
     }
   };
 
@@ -40,8 +44,18 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded">
             <span className="text-accent font-mono">{product.category}</span>
           </div>
+          {product.sharpening !== undefined && (
+            <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-1 rounded">
+              <span className="text-accent font-mono">+{product.sharpening}</span>
+            </div>
+          )}
         </div>
         <p className="text-muted-foreground line-clamp-2">{product.description}</p>
+        {product.discordUsername && (
+          <div className="mt-2 text-sm text-primary-foreground">
+            Contact: {product.discordUsername}
+          </div>
+        )}
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <span className="text-secondary font-bold text-xl font-mono">{product.price} RU</span>

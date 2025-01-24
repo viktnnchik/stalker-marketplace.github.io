@@ -4,5 +4,7 @@ export interface Product {
   description: string;
   price: number;
   image: string;
-  category: 'weapons' | 'artifacts' | 'equipment' | 'consumables';
+  category: 'armor' | 'weapons' | 'artifacts' | 'sharpening';
+  discordUsername?: string;
+  sharpening?: number;
 }
