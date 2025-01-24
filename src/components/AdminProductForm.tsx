@@ -63,21 +63,6 @@ export function AdminProductForm() {
     });
   };
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'armor':
-        return <Shield className="w-4 h-4" />;
-      case 'weapons':
-        return <Sword className="w-4 h-4" />;
-      case 'artifacts':
-        return <Star className="w-4 h-4" />;
-      case 'sharpening':
-        return <Wrench className="w-4 h-4" />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
